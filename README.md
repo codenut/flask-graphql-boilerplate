@@ -1,4 +1,4 @@
-# Madets Backend
+# Flask Graphql Boilerplate
 
 This is a boilerplate code for writing backend services using [Flask](https://flask.palletsprojects.com/en/1.1.x/) and [GraphQL](https://graphql.org/).
 
@@ -108,7 +108,6 @@ The application structure presented in this boilerplate is grouped primarily by 
 │   ├── models               # Python classes modeling the database
 │   │   ├── abc.py           # Abstract base class model
 │   │   └── user.py          # Definition of the user model
-│   │   └── user.py          # Rest verbs related to the user routes
 │   ├── gql                  # The classes for GraphQL schema and resolvers
 │   │   └── schema.py        # This where the schemas are defined
 │   │   └── user_schema.py   # The GraphQL queries and mutations related to the user
@@ -163,7 +162,7 @@ $ make format.isort # Apply Isort on every file
 If you want to contribute to this flask restplus boilerplate, clone the repository and just start making pull requests.
 
 ```
-https://github.com/cosmic-byte/flask-restplus-boilerplate.git
+https://github.com/codenut/flask-graphql-boilerplate
 ```
 
 ### Credits
