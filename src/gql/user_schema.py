@@ -6,28 +6,28 @@ import graphene
 class User(SQLAlchemyObjectType):
     class Meta:
         model = UserModel
-        interfaces = (graphene.relay.Node,)
+        interfaces = (graphene.relay.Node, )
 
 
 class UserQuery(graphene.ObjectType):
-    user = graphene.List(User, username=graphene.String())
+    user = graphene.List(User, email=graphene.String())
 
-    def resolve_user(self, info, username):
+    def resolve_user(self, info, email):
         query = User.get_query(info)
-        return query.filter_by(username=username)
+        return query.filter_by(email=email)
 
 
 class CreateUser(graphene.Mutation):
     class Arguments:
         username = graphene.String()
         email = graphene.String()
+        password = graphene.String()
 
     user = graphene.Field(lambda: User)
     ok = graphene.Boolean()
 
-    def mutate(self, info, username, email):
-
-        user = UserModel(username=username, email=email)
+    def mutate(self, info, email, password, username=None):
+        user = UserModel(username=username, email=email, password=password)
         user.save()
         ok = True
         return CreateUser(user=user, ok=ok)

@@ -2,16 +2,10 @@ from flask import Flask
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
-import config
-from models import db
+from server import app, db
 
-server = Flask(__name__)
-server.debug = config.DEBUG
-server.config["SQLALCHEMY_DATABASE_URI"] = config.DB_URI
-db.init_app(server)
-
-migrate = Migrate(server, db)
-manager = Manager(server)
+migrate = Migrate(app, db)
+manager = Manager(app)
 manager.add_command("db", MigrateCommand)
 
 if __name__ == "__main__":

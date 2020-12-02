@@ -6,6 +6,7 @@ from weakref import WeakValueDictionary
 
 from sqlalchemy import inspect
 from sqlalchemy.orm import aliased
+from sqlalchemy.sql import func
 
 from . import db
 
@@ -29,6 +30,12 @@ class MetaBaseModel(db.Model.__class__):
 class BaseModel:
     """ Generalize __init__, __repr__ and to_json
         Based on the models columns """
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    updated_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now(),
+                           onupdate=func.now())
+    created_at = db.Column(db.DateTime(timezone=True),
+                           server_default=func.now())
 
     print_filter = ()
     to_json_filter = ()
